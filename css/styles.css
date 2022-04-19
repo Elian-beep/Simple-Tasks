@@ -1,4 +1,4 @@
-body{
+body {
     background: #000;
     color: #FFF;
     margin: 0;
@@ -6,7 +6,27 @@ body{
     font-size: 1rem;
 }
 
-.conteudo{
+body::-webkit-scrollbar {
+    border-radius: 5px;
+    width: 10px;
+    background-color: #1C1C1C;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.container {
+    @media (max-width: 600px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh - 100px);
+    }
+}
+
+.conteudo {
     margin: 0 auto;
     width: 100%;
     max-width: 450px;
@@ -15,20 +35,35 @@ body{
     background: #2b2a2a;
     padding: 55px;
     border-radius: 12px;
+
+    @media(max-width: 600px) {
+        width: 1120px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        margin: 5px;
+    }
 }
 
-.conteudo h1{
+.conteudo h1 {
     display: flex;
     justify-content: center;
 }
 
-.topo{
+.topo {
     display: flex;
     justify-content: space-between;
     margin-bottom: 35px;
+
+    @media(max-width: 600px) {
+        overflow-x: auto;
+        height: inherit;
+    }
 }
 
-.topo input{
+.topo input {
     width: 350px;
     padding: 15px;
     border-radius: 12px;
@@ -39,7 +74,7 @@ body{
     color: #FFF;
 }
 
-.topo button{
+.topo button {
     width: 45px;
     border-radius: 12px;
     border: 1px solid #191818;
@@ -48,37 +83,34 @@ body{
     outline: none;
 }
 
-.topo button:hover{
+.topo button:hover {
     background: #1f1e1e;
     cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-#listaTarefas{
-    list-style-type: none; /*Retira a bolinha da lista*/
+#listaTarefas {
+    list-style-type: none;
+    /*Retira a bolinha da lista*/
     padding: 0;
     margin: 0;
+
+    @media(max-width: 600px) {
+        overflow-x: auto;
+        height: inherit;
+    }
 }
 
-#listaTarefas li{
+#listaTarefas li {
     padding: 20px;
     background: #191818;
     border-radius: 12px;
     margin-top: 15px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.btnAcao{
+.btnAcao {
     border-radius: 20px;
     border: 1px solid #191818;
     width: 38px;
@@ -90,7 +122,6 @@ body{
     outline: none;
 }
 
-.btnAcao:hover{
+.btnAcao:hover {
     background: #3c3a3a;
-    
 }
