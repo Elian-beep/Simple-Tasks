@@ -59,12 +59,12 @@ function criarTagLi(tarefa) {
     let btnEditar = document.createElement('button');
     btnEditar.classList.add('btnAcao');
     btnEditar.innerHTML = "<i class='fa fa-pencil'></i>";
-    btnEditar.setAttribute('onclick', 'editar('+tarefa.id+')');         //Adiciona o evento de onclick ja com a função
+    btnEditar.setAttribute('onclick', 'editar(' + tarefa.id + ')');         //Adiciona o evento de onclick ja com a função
 
     let btnExcluir = document.createElement('button');
     btnExcluir.classList.add('btnAcao');
     btnExcluir.innerHTML = "<i class='fa fa-trash'></i>";
-    btnExcluir.setAttribute('onclick', 'excluir('+tarefa.id+')');       //Adiciona o evento de onclick ja com a função
+    btnExcluir.setAttribute('onclick', 'excluir(' + tarefa.id + ')');       //Adiciona o evento de onclick ja com a função
 
     div.appendChild(btnEditar);                 //Adiciona dentro da tag
     div.appendChild(btnExcluir);
@@ -76,17 +76,20 @@ function criarTagLi(tarefa) {
 }
 
 //--------------------------------------------Função para mudar a tarefa
-function editar(idTarefa){
+function editar(idTarefa) {
+    let li = document.getElementById('' + idTarefa + '');                //Pegando o li que possui o id que será excluido
+    if (li) {
+    }
 }
 
 
 
 //--------------------------------------------Função para excluir a tarefa
-function excluir(idTarefa){
+function excluir(idTarefa) {
     let confirmacao = window.confirm('Tem certeza que deseja excluir?');
-    if(confirmacao){
-        let li = document.getElementById(''+idTarefa+'');                //Pegando o li que possui o id que será excluido
-        if(li){
+    if (confirmacao) {
+        let li = document.getElementById('' + idTarefa + '');                //Pegando o li que possui o id que será excluido
+        if (li) {
             listaTarefas.removeChild(li);
         }
     }
