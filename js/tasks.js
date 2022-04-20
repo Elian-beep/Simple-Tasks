@@ -1,10 +1,13 @@
-let inputNovaTarefa = document.querySelector('#inputNovaTarefa'); //Pegando o campo de texto da nova tarefa
-let btnAddTarefa = document.querySelector('#btnAddTarefa'); //Pegando o botao de adicionar nova tarefa
-let listaTarefas = document.querySelector('#listaTarefas'); //Pegando a lista de tarefas
+let inputNovaTarefa = document.querySelector('#inputNovaTarefa');   //Pegando o campo de texto da nova tarefa
+let btnAddTarefa    = document.querySelector('#btnAddTarefa');      //Pegando o botao de adicionar nova tarefa
+let listaTarefas    = document.querySelector('#listaTarefas');      //Pegando a lista de tarefas
 
-let janelaEdicao = document.querySelector('#janelaEdicao'); //Pegando a janela de edição de tarefa
-let janelaEdicaoFundo = document.querySelector('#janelaEdicaoFundo'); //Pegando a janela de fundo de edição de tarefa
-let janelaEdicaoBtnFechar = document.querySelector('#janelaEdicaoBtnFechar'); //Pegando o botão de fechar da janela de edição
+let janelaEdicao            = document.querySelector('#janelaEdicao');          //Pegando a janela de edição de tarefa
+let janelaEdicaoFundo       = document.querySelector('#janelaEdicaoFundo');     //Pegando a janela de fundo de edição de tarefa
+let janelaEdicaoBtnFechar   = document.querySelector('#janelaEdicaoBtnFechar'); //Pegando o botão de fechar da janela de edição
+let idTarefaEdicao          = document.querySelector('#idTarefaEdicao');        //Pega o h2 com o id da tarefa que deve ser editada
+let inputTarefaNomeEdicao   = document.querySelector('#inputTarefaNomeEdicao'); //Pega o novo nome da tarefa
+let btnAtualizarTarefa      = document.querySelector('#btnAtualizarTarefa');    //Pega o botão de enviar o novo nome da tarefa
 
 let qtdTarefas = 0;
 
@@ -27,12 +30,16 @@ btnAddTarefa.addEventListener('click', (e) => {             //Se o botão for cl
     adicionarTarefa(tarefa)
 });
 
+janelaEdicaoBtnFechar.addEventListener('click', (e) => {
+    alternarJanelaEdicao();
+});
+
 
 
 //--------------------------------------------Função para gerar id aleatório
-function gerarId() {
-    //A função vai retornar um número entre 1 e 3.000
+//A função vai retornar um número entre 1 e 3.000
     //Depois o numero vai ser arrendodado pro menor numero inteiro
+function gerarId() {
     return Math.floor(Math.random() * 3000);
 }
 
@@ -85,9 +92,20 @@ function criarTagLi(tarefa) {
 function editar(idTarefa) {
     let li = document.getElementById('' + idTarefa + '');                //Pegando o li que possui o id que será excluido
     if (li) {
-        janelaEdicao.classList.add('abrir');
-        janelaEdicaoFundo.classList.add('abrir');
+        idTarefaEdicao.innerHTML = '#' + idTarefa;
+        inputTarefaNomeEdicao.value = li.innerText;
+        alternarJanelaEdicao();
+    }else{
+        alert('Elemento HTML não encontrado!');
     }
+}
+
+
+
+//--------------------------------------------Função para alternar a class abrir da janela de edição
+function alternarJanelaEdicao() {
+    janelaEdicao.classList.toggle('abrir');
+    janelaEdicaoFundo.classList.toggle('abrir');
 }
 
 
@@ -102,3 +120,6 @@ function excluir(idTarefa) {
         }
     }
 }
+
+
+
