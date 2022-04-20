@@ -2,6 +2,10 @@ let inputNovaTarefa = document.querySelector('#inputNovaTarefa'); //Pegando o ca
 let btnAddTarefa = document.querySelector('#btnAddTarefa'); //Pegando o botao de adicionar nova tarefa
 let listaTarefas = document.querySelector('#listaTarefas'); //Pegando a lista de tarefas
 
+let janelaEdicao = document.querySelector('#janelaEdicao'); //Pegando a janela de edição de tarefa
+let janelaEdicaoFundo = document.querySelector('#janelaEdicaoFundo'); //Pegando a janela de fundo de edição de tarefa
+let janelaEdicaoBtnFechar = document.querySelector('#janelaEdicaoBtnFechar'); //Pegando o botão de fechar da janela de edição
+
 let qtdTarefas = 0;
 
 
@@ -75,10 +79,14 @@ function criarTagLi(tarefa) {
     return li;
 }
 
+
+
 //--------------------------------------------Função para mudar a tarefa
 function editar(idTarefa) {
     let li = document.getElementById('' + idTarefa + '');                //Pegando o li que possui o id que será excluido
     if (li) {
+        janelaEdicao.classList.add('abrir');
+        janelaEdicaoFundo.classList.add('abrir');
     }
 }
 
