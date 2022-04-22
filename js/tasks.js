@@ -1,13 +1,13 @@
 let inputNovaTarefa = document.querySelector('#inputNovaTarefa');   //Pegando o campo de texto da nova tarefa
-let btnAddTarefa    = document.querySelector('#btnAddTarefa');      //Pegando o botao de adicionar nova tarefa
-let listaTarefas    = document.querySelector('#listaTarefas');      //Pegando a lista de tarefas
+let btnAddTarefa = document.querySelector('#btnAddTarefa');      //Pegando o botao de adicionar nova tarefa
+let listaTarefas = document.querySelector('#listaTarefas');      //Pegando a lista de tarefas
 
-let janelaEdicao            = document.querySelector('#janelaEdicao');          //Pegando a janela de edição de tarefa
-let janelaEdicaoFundo       = document.querySelector('#janelaEdicaoFundo');     //Pegando a janela de fundo de edição de tarefa
-let janelaEdicaoBtnFechar   = document.querySelector('#janelaEdicaoBtnFechar'); //Pegando o botão de fechar da janela de edição
-let idTarefaEdicao          = document.querySelector('#idTarefaEdicao');        //Pega o h2 com o id da tarefa que deve ser editada
-let inputTarefaNomeEdicao   = document.querySelector('#inputTarefaNomeEdicao'); //Pega o novo nome da tarefa
-let btnAtualizarTarefa      = document.querySelector('#btnAtualizarTarefa');    //Pega o botão de enviar o novo nome da tarefa
+let janelaEdicao = document.querySelector('#janelaEdicao');          //Pegando a janela de edição de tarefa
+let janelaEdicaoFundo = document.querySelector('#janelaEdicaoFundo');     //Pegando a janela de fundo de edição de tarefa
+let janelaEdicaoBtnFechar = document.querySelector('#janelaEdicaoBtnFechar'); //Pegando o botão de fechar da janela de edição
+let idTarefaEdicao = document.querySelector('#idTarefaEdicao');        //Pega o h2 com o id da tarefa que deve ser editada
+let inputTarefaNomeEdicao = document.querySelector('#inputTarefaNomeEdicao'); //Pega o novo nome da tarefa
+let btnAtualizarTarefa = document.querySelector('#btnAtualizarTarefa');    //Pega o botão de enviar o novo nome da tarefa
 
 let qtdTarefas = 0;
 
@@ -16,19 +16,41 @@ inputNovaTarefa.addEventListener('keypress', (e) => {       //Vai ficar ouvindo 
     if (e.keyCode == 13) {                                  //Se a tecla 'enter' for pressionada
         let tarefa = {
             nome: inputNovaTarefa.value,
-            id: gerarId,
+            id: gerarId(),
         }
         adicionarTarefa(tarefa)
     }
 });
 
+
 btnAddTarefa.addEventListener('click', (e) => {             //Se o botão for clicado
     let tarefa = {
         nome: inputNovaTarefa.value,
-        id: gerarId,
+        id: gerarId(),
     }
     adicionarTarefa(tarefa)
 });
+
+
+btnAtualizarTarefa.addEventListener('click', (e) => {
+    e.preventDefault(); //Vai previnir caso nao haja alteração
+    let idTarefa = idTarefaEdicao.innerHTML.replace('#', '');
+    let tarefa = {
+        nome: inputTarefaNomeEdicao.value,
+        id: idTarefa
+    }
+    let tarefaAtual = document.getElementById('' + idTarefa + '');
+
+    if (tarefaAtual) {
+        let li = criarTagLi(tarefa);
+        listaTarefas.replaceChild(li, tarefaAtual); //Atualizando as tags com os novos dados
+        alternarJanelaEdicao();
+    } else {
+        alert('Elemento HTML não encontrado!');
+    }
+
+});
+
 
 janelaEdicaoBtnFechar.addEventListener('click', (e) => {
     alternarJanelaEdicao();
@@ -38,9 +60,10 @@ janelaEdicaoBtnFechar.addEventListener('click', (e) => {
 
 //--------------------------------------------Função para gerar id aleatório
 //A função vai retornar um número entre 1 e 3.000
-    //Depois o numero vai ser arrendodado pro menor numero inteiro
+//Depois o numero vai ser arrendodado pro menor numero inteiro
 function gerarId() {
-    return Math.floor(Math.random() * 3000);
+    let idGerado = Math.floor(Math.random() * 3000);
+    return idGerado;
 }
 
 
@@ -95,7 +118,7 @@ function editar(idTarefa) {
         idTarefaEdicao.innerHTML = '#' + idTarefa;
         inputTarefaNomeEdicao.value = li.innerText;
         alternarJanelaEdicao();
-    }else{
+    } else {
         alert('Elemento HTML não encontrado!');
     }
 }
@@ -117,6 +140,8 @@ function excluir(idTarefa) {
         let li = document.getElementById('' + idTarefa + '');                //Pegando o li que possui o id que será excluido
         if (li) {
             listaTarefas.removeChild(li);
+        } else {
+            alert('Elemento HTML não encontrado!');
         }
     }
 }

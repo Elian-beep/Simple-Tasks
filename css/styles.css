@@ -126,6 +126,12 @@ body::-webkit-scrollbar-thumb {
     background: #3c3a3a;
 }
 
+.textoTarefa{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 290px;
+    /* white-space: nowrap; */
+}
 
 
 /*-------------------------------------------------------------JANELA DE EDIÇÃO*/
