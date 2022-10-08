@@ -7,6 +7,7 @@ Lista de tarefas simplificado
 | :sparkles: Nome        | **Simple Tasks**
 | :label: Tecnologias | javascript, html, css
 | :rocket: URL         | https://simple-tasks.vercel.app/
+|:fire: Desafio     | PROJETO PESSOAL
 
 ## Detalhes do projeto
 
